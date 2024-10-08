@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import Button from "./Button";
+import styles from "./App.module.css";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [counter, setValue] = useState(0);
+  const onClick = () => setValue((prev) => prev + 1);
+  console.log("i run all the time");
+
+  useEffect(() => {
+    console.log("CALL THE API...");
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1 className={styles.title}>Hello World!!!!</h1>
+      <h1>{counter}</h1>
+      <Button text={"Click Me!!!!!"} />
+      <button onClick={onClick}>Introduction</button>
     </div>
   );
 }
