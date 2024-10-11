@@ -8,7 +8,13 @@ function Movie({ id, coverImg, title, summary, rating, year, genres }) {
       <h2>
         <Link to={`/movie/${id}`}>{title}</Link>
       </h2>
-      <p>{summary}</p>
+      <p>
+        {summary.length > 235
+          ? `${summary.slice(0, 235)}`
+          : summary.length < 1
+          ? "[ 영화 소개 글이 비어있어서 제가 채운겁니다!!! ] "
+          : summary}
+      </p>
       <p>{`평점: ${rating}`}</p>
       <p>{`개봉년도: ${year}`}</p>
       <ul>
