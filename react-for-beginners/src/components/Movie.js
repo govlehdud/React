@@ -1,27 +1,31 @@
 import { Link } from "react-router-dom";
 import PropType from "prop-types";
+import styles from "./Movie.module.css";
 
 function Movie({ id, coverImg, title, summary, rating, year, genres }) {
   return (
-    <div>
-      <img src={coverImg} alt={title} />
-      <h2>
-        <Link to={`/movie/${id}`}>{title}</Link>
-      </h2>
-      <p>
-        {summary.length > 235
-          ? `${summary.slice(0, 235)}`
-          : summary.length < 1
-          ? "[ 영화 소개 글이 비어있어서 제가 채운겁니다!!! ] "
-          : summary}
-      </p>
-      <p>{`평점: ${rating}`}</p>
-      <p>{`개봉년도: ${year}`}</p>
-      <ul>
-        {genres.map((data) => (
-          <li key={data}>{`tag: ${data}`}</li>
-        ))}
-      </ul>
+    <div className={styles.movie}>
+      <img src={coverImg} alt={title} className={styles.movie__img} />
+      <div>
+        <h2 className={styles.movie__title}>
+          <Link to={`/movie/${id}`}>{title}</Link>
+        </h2>
+
+        <h3 className={styles.movie__year}>{`개봉년도: ${year}`}</h3>
+        <p>
+          {summary.length > 235
+            ? `${summary.slice(0, 235)}`
+            : summary.length < 1
+            ? "[ 영화 소개 글이 비어있어서 제가 채운겁니다!!! ] "
+            : summary}
+        </p>
+        <p className={styles.movie__rating}>{`평점: ${rating}`}</p>
+        <ul className={styles.movie__genres}>
+          {genres.map((data) => (
+            <li key={data}>{`${data}`}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
